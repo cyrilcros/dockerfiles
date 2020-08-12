@@ -10,6 +10,8 @@ RUN conda config --system --prepend channels bioconda && \
     conda config --env --add pinned_packages 'openjdk>8.0.121' && \
     conda install --quiet --yes \
     'nb_conda_kernels=2.2.4' \
+    'jupyter' \
+    'tornado' \
     'beakerx=1.4.0' && \
     conda clean --all -f -y && \
     jupyter labextension install @jupyterlab/theme-dark-extension --no-build && \
