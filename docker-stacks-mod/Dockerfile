@@ -1,23 +1,20 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=jupyter/datascience-notebook:python-3.7.6
+ARG BASE_CONTAINER=jupyter/datascience-notebook:python-3.8.5
 FROM $BASE_CONTAINER
 
 USER $NB_UID
 
 RUN conda config --system --prepend channels bioconda && \
     conda config --system --prepend channels conda-forge && \
-    conda config --env --add pinned_packages 'openjdk>8.0.121' && \
     conda install --quiet --yes \
-    'nb_conda_kernels=2.2.4' \
-    'jupyter' \
-    'tornado' \
-    'beakerx=1.4.0' && \
+    'jupytext=1.5.2' \
+    'nb_conda_kernels=2.2.4' && \
     conda clean --all -f -y && \
     jupyter labextension install @jupyterlab/theme-dark-extension --no-build && \
     jupyter labextension install @jupyterlab/toc --no-build && \
     jupyter labextension install @krassowski/jupyterlab_go_to_definition --no-build && \
-    jupyter labextension install beakerx-jupyterlab --no-build && \
+    jupyter labextension install jupyterlab-jupytext --no-build && \
     jupyter lab build -y && \
     jupyter lab clean -y && \
     npm cache clean --force && \
