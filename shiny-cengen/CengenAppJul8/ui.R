@@ -52,7 +52,6 @@ msg <- filter(gene_list, gene_id %in% utr)$gene_name %>% paste(., collapse = ", 
 
 ## UI ----
 ui <- fluidPage(
-  tags$head(includeHTML(("google-analytics-script2.html"))),
   theme = "Theme.min.css",
   tags$head(tags$style(
     HTML(".shiny-output-error-validation {color: red;}")
